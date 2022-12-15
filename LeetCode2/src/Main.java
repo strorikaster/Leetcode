@@ -44,10 +44,10 @@ public class Main {
 //        int[] nums2 = {2,3,4,6,8};
 //        printNonRepeatElementsInFirstArray(nums1, nums2);
 
-//        int[] nums3 = {1,2,3,4,3,5};
-//        System.out.println(containsDubl(nums3));
+        int[] nums3 = {1,2,3,4,3,5};
+        System.out.println(containsDubl(nums3));
 
-        System.out.println(findFirstNonRepeatLetter("aaaabccccdggg"));
+        //System.out.println(findFirstNonRepeatLetter("aaaabccccdggg"));
 
     }
 
@@ -248,24 +248,27 @@ public class Main {
 
         public static boolean containsDubl(int[] nums) {
             Map<Integer, Integer> map = new HashMap<>();
-            boolean result = true;
+
             for (int i = 0; i < nums.length; i++) {
                 if(!map.containsKey(nums[i])) {
                     map.put(nums[i], 1);
-                    result = false;
-                } else {
+                } else if(map.containsKey(nums[i])) {
                     map.computeIfPresent(nums[i], (key, val) -> val + 1);
-                    if (map.containsValue(2)) {
-                        result = true;
-                    }
+//
                 }
             }
-            return result;
+            return map
+                   .entrySet()
+                   .stream()
+                   .anyMatch(entry -> entry.getValue() > 1);
+
+
+
         }
 
         public static Character findFirstNonRepeatLetter(String str) {
          Map<Character, Integer> map = new HashMap<>();
-            char result;
+
             char[] charArr = str.toCharArray();
             for (int i = 0; i < str.length(); i++) {
                 if(!map.containsKey(charArr[i])) {

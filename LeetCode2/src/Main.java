@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -6,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws MyException, MyDoubleException {
 
         int[] nums = {3, 6, 7, 8, 10};
         int[] digits = {9};
@@ -43,11 +44,25 @@ public class Main {
 //        int[] nums1 = {1,2,3,5,7};
 //        int[] nums2 = {2,3,4,6,8};
 //        printNonRepeatElementsInFirstArray(nums1, nums2);
+        //System.out.println(reverseString2(str));
 
         int[] nums3 = {1,2,3,4,3,5};
-        System.out.println(containsDubl(nums3));
+       // System.out.println(containsDubl(nums3));
 
         //System.out.println(findFirstNonRepeatLetter("aaaabccccdggg"));
+        String[] strArr = {"sdffgg", "fgdfg", "aaaahjfhj", "dfdfd", "aaa", "tyttyty"};
+        //fiterTripleA(strArr);
+        //int[] sourceArray = {2,6,4,8,9,5,7};
+        //System.out.println(Arrays.toString(sort(sourceArray)));
+        double[] sourceDoubleArray = {/*2.7,6.0,4.5,8.3,9.4,5.9,7.0*/0.0};
+//        System.out.println(foo(sourceDoubleArray));
+        Person person1 = new Person("Alex", "Zotov", 41);
+        Person person2 =  new Person();
+        person2.setAge(41);
+        person2.setLastName("Zotov");
+        person2.setFirstName("Alex");
+
+        System.out.println(person1.equals(person2));
 
     }
 
@@ -286,6 +301,141 @@ public class Main {
                     .findFirst().get();
         }
 
+//        public static String reverseString2(String str) {
+//            String str1 = str.toLowerCase();
+//            String str2 = "";
+//            str2 += str1.replace(str.charAt(str.length() - 1), Character.toUpperCase(str.charAt(str.length() - 1)));
+//            String str3 = "";
+//            for (int i = str2.length() - 1 ; i >= 0; i--) {
+//                if(" ".equals(str2.charAt(i))) {
+//                   str3 += str3.replace(str2.charAt(i), Character.toUpperCase(str2.charAt(i +1)));
+//                }
+//                str3+=str2.charAt(i);
+//            }
+//            return str3;
+//        }
+
+    //Make Method filter strings "aaa", method get array of strings
+    public static void fiterTripleA(String[] stringCollection) {
+        /*String[] filetredStringArray  =*/ Arrays.stream(stringCollection).filter(s -> !s.startsWith("aaa")).forEach(s -> System.out.println(s));
+    }
+
+    //Make bubble sort method with exception, if incoming array is empty
+    public static int[] sort(int[] sourceArray) throws MyException {
+      if(sourceArray.length == 0) throw new MyException("The length of sourceArray not be equals 0");
+        //int temp = 0;
+        for (int i = 0; i < sourceArray.length ; i++) {
+
+            for (int j = 0; j < sourceArray.length - 1; j++) {
+
+                if (sourceArray[j] > sourceArray[j + 1]) {
+                    int temp = sourceArray[j];
+                    sourceArray[j] = sourceArray[j + 1];
+                    sourceArray[j + 1] = temp;
+                }
+            }
+        }
+        return sourceArray;
+        }
+
+        public static double foo(double[] sourceDoubleArray) throws MyDoubleException {
+            Arrays.sort(sourceDoubleArray);
+            double sum = 0.0;
+            Double result = 0.0;
+
+
+            try {
+            double min = sourceDoubleArray[0];
+            double max = sourceDoubleArray[sourceDoubleArray.length - 1];
+
+            for (int i = 0; i < sourceDoubleArray.length; i++) {
+                sum += sourceDoubleArray[i];
+            }
+
+            double avg = sum / sourceDoubleArray.length;
+
+            if (avg == 0) {
+                throw new MyDoubleException("Divide by zero exception");
+            }
+
+            result = (max - min) / avg;
+
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            if (ex instanceof ArrayIndexOutOfBoundsException) {
+                throw new MyDoubleException("Empty input array");
+            }
+        }
+
+            return result;
+        }
+
+
+}
+
+//bubble sort method exception
+class MyException extends Exception {
+
+   public MyException (String message) {
+       super(message);
+   }
+}
+
+class MyDoubleException extends Exception {
+
+    public MyDoubleException (String message) {
+        super(message);
+    }
+}
+
+class Person {
+
+    String firstName;
+    String lastName;
+    Integer age;
+
+    public Person() {}
+
+    public Person(String firstName, String lastName, int age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    @Override
+    public boolean equals(Object person1) {
+        Person person2 = new Person(firstName, lastName, age);
+        //return  (person2.age == ((Person) person1).age && person2.firstName.equals(((Person) person1).firstName) && person2.lastName.equals(((Person) person1).lastName));
+        return person1.hashCode() == person2.hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+        return 31*age*firstName.length()*lastName.length();
+    }
 }
 
 

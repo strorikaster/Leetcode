@@ -23,21 +23,20 @@ public class Main {
         Object o = new Object();
 
 
-        list1.add(null);//<? extends A> producer ничего нельзя положить кроме null
-        //list1.add(d);<? extends A> producer ничего нельзя положить кроме null
+        list1.add(null);//<? extends A> producer пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ null
+        //list1.add(d);<? extends A> producer пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ null
         list2.add(b);
         list2.add(c);
         //end generic test
-
 
 
         //System.out.println(removeElement(nums, 3));
         //System.out.println(searchInsert(nums, 5));
         //System.out.println(plusOne(digits).toString());
         // System.out.println(getDuplicatedWordsInString("Java i like this programming language java"));
-        String str = "Иванов Иван Иванович";
+        String str = "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
         //System.out.println(reverseString(str));
-        //System.out.println(exchangeSymbols(str,  'а', 'т'));
+        //System.out.println(exchangeSymbols(str,  'пїЅ', 'пїЅ'));
         //System.out.println(stringToInt("-23"));
         //outputNumbers();
         //System.out.println(stringToDouble("23"));
@@ -46,8 +45,8 @@ public class Main {
 //        printNonRepeatElementsInFirstArray(nums1, nums2);
         //System.out.println(reverseString2(str));
 
-        int[] nums3 = {1,2,3,4,3,5};
-       // System.out.println(containsDubl(nums3));
+        int[] nums3 = {1, 2, 3, 4, 3, 5};
+        // System.out.println(containsDubl(nums3));
 
         //System.out.println(findFirstNonRepeatLetter("aaaabccccdggg"));
         String[] strArr = {"sdffgg", "fgdfg", "aaaahjfhj", "dfdfd", "aaa", "tyttyty"};
@@ -57,13 +56,19 @@ public class Main {
         double[] sourceDoubleArray = {/*2.7,6.0,4.5,8.3,9.4,5.9,7.0*/0.0};
 //        System.out.println(foo(sourceDoubleArray));
         Person person1 = new Person("Alex", "Zotov", 41);
-        Person person2 =  new Person();
+        Person person2 = new Person();
         person2.setAge(41);
         person2.setLastName("Zotov");
         person2.setFirstName("Alex");
 
-        System.out.println(person1.equals(person2));
+        //System.out.println(person1.equals(person2));
 
+        int[] nums1 = {2,9,3,8,4,7,5,6,1};
+        int[] nums2 = {6,5,4,9,8,1,0,3,4};
+//        int[] nums1 = {1,2,3,5,7};
+//        int[] nums2 = {2,3,4,6,8};
+        System.out.println(Arrays.toString(repeatedValueArray(nums1, nums2)));
+        //repeatedValueArray(nums1, nums2);
     }
 
     public static int removeElement(int[] nums, int val) {
@@ -99,7 +104,7 @@ public class Main {
         return lo;
     }
 
-    //сам решил
+    //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     public int lengthOfLastWord(String s) {
         String[] strMas = s.split(" ");
         return (strMas[strMas.length - 1]).length();
@@ -201,7 +206,7 @@ public class Main {
         }
 
         for (int i = 0; i < str.length(); i++) {
-                result = result * 10 + ((str.charAt(i))) - '0';
+            result = result * 10 + ((str.charAt(i))) - '0';
         }
         return result * isNegative;
     }
@@ -222,10 +227,17 @@ public class Main {
 
 
     //Generics and PECS
-    public static class D{}
-    public static class A extends D{}
-    public static class B extends A{}
-    public static class C extends B{}
+    public static class D {
+    }
+
+    public static class A extends D {
+    }
+
+    public static class B extends A {
+    }
+
+    public static class C extends B {
+    }
 
     public static Double stringToDouble(String str) {
         Double result = 0.0;
@@ -237,69 +249,68 @@ public class Main {
         }
         for (int i = 0; i < str.length(); i++) {
 
-                if(str.charAt(i) == ',') {
-                    ++i;
-                    pow = str.length() - i;
-                }
-            result = result * 10 + ((str.charAt(i))) - '0';
+            if (str.charAt(i) == ',') {
+                ++i;
+                pow = str.length() - i;
             }
-        result = isNegative*result/Math.pow(10, pow);
+            result = result * 10 + ((str.charAt(i))) - '0';
+        }
+        result = isNegative * result / Math.pow(10, pow);
         return result;
     }
 
     public static void printNonRepeatElementsInFirstArray(int[] nums1, int[] nums2) {
-       int k = 0;
-       int l = 0;
+        int k = 0;
+        int l = 0;
 
-       while (k < nums1.length) {
-           if(nums1[k] != nums2[l]) {
-               System.out.println(nums1[k]);
-           } else {
-               l++;
-           }
-           k++;
-       }
+        while (k < nums1.length) {
+            if (nums1[k] != nums2[l]) {
+                System.out.println(nums1[k]);
+            } else {
+                l++;
+            }
+            k++;
+        }
     }
 
-        public static boolean containsDubl(int[] nums) {
-            Map<Integer, Integer> map = new HashMap<>();
+    public static boolean containsDubl(int[] nums) {
+        Map<Integer, Integer> map = new HashMap<>();
 
-            for (int i = 0; i < nums.length; i++) {
-                if(!map.containsKey(nums[i])) {
-                    map.put(nums[i], 1);
-                } else if(map.containsKey(nums[i])) {
-                    map.computeIfPresent(nums[i], (key, val) -> val + 1);
+        for (int i = 0; i < nums.length; i++) {
+            if (!map.containsKey(nums[i])) {
+                map.put(nums[i], 1);
+            } else if (map.containsKey(nums[i])) {
+                map.computeIfPresent(nums[i], (key, val) -> val + 1);
 //
-                }
             }
-            return map
-                   .entrySet()
-                   .stream()
-                   .anyMatch(entry -> entry.getValue() > 1);
-
-
-
         }
+        return map
+                .entrySet()
+                .stream()
+                .anyMatch(entry -> entry.getValue() > 1);
 
-        public static Character findFirstNonRepeatLetter(String str) {
-         Map<Character, Integer> map = new HashMap<>();
 
-            char[] charArr = str.toCharArray();
-            for (int i = 0; i < str.length(); i++) {
-                if(!map.containsKey(charArr[i])) {
-                    map.put(charArr[i], 1);
-                } else if(map.containsKey(charArr[i])) {
-                    map.computeIfPresent(charArr[i], (key, val) -> val + 1);
-                }
+    }
+
+    public static Character findFirstNonRepeatLetter(String str) {
+        Map<Character, Integer> map = new HashMap<>();
+
+        char[] charArr = str.toCharArray();
+        for (int i = 0; i < str.length(); i++) {
+            if (!map.containsKey(charArr[i])) {
+                map.put(charArr[i], 1);
+            } else if (map.containsKey(charArr[i])) {
+                map.computeIfPresent(charArr[i], (key, val) -> val + 1);
             }
-            //System.out.println(map.toString());
-            return map
-                    .entrySet()
-                    .stream()
-                    .filter(entry -> entry.getValue().equals(1))
-                    .map(Map.Entry::getKey)
-                    .findFirst().get();
         }
+        //System.out.println(map.toString());
+        return map
+                .entrySet()
+                .stream()
+                .filter(entry -> entry.getValue().equals(1))
+                .map(Map.Entry::getKey)
+                .findFirst().get();
+    }
 
 //        public static String reverseString2(String str) {
 //            String str1 = str.toLowerCase();
@@ -317,14 +328,15 @@ public class Main {
 
     //Make Method filter strings "aaa", method get array of strings
     public static void fiterTripleA(String[] stringCollection) {
-        /*String[] filetredStringArray  =*/ Arrays.stream(stringCollection).filter(s -> !s.startsWith("aaa")).forEach(s -> System.out.println(s));
+        /*String[] filetredStringArray  =*/
+        Arrays.stream(stringCollection).filter(s -> !s.startsWith("aaa")).forEach(s -> System.out.println(s));
     }
 
     //Make bubble sort method with exception, if incoming array is empty
     public static int[] sort(int[] sourceArray) throws MyException {
-      if(sourceArray.length == 0) throw new MyException("The length of sourceArray not be equals 0");
+        if (sourceArray.length == 0) throw new MyException("The length of sourceArray not be equals 0");
         //int temp = 0;
-        for (int i = 0; i < sourceArray.length ; i++) {
+        for (int i = 0; i < sourceArray.length; i++) {
 
             for (int j = 0; j < sourceArray.length - 1; j++) {
 
@@ -336,15 +348,15 @@ public class Main {
             }
         }
         return sourceArray;
-        }
+    }
 
-        public static double foo(double[] sourceDoubleArray) throws MyDoubleException {
-            Arrays.sort(sourceDoubleArray);
-            double sum = 0.0;
-            Double result = 0.0;
+    public static double foo(double[] sourceDoubleArray) throws MyDoubleException {
+        Arrays.sort(sourceDoubleArray);
+        double sum = 0.0;
+        Double result = 0.0;
 
 
-            try {
+        try {
             double min = sourceDoubleArray[0];
             double max = sourceDoubleArray[sourceDoubleArray.length - 1];
 
@@ -366,10 +378,30 @@ public class Main {
             }
         }
 
-            return result;
+        return result;
+    }
+
+    public static int[] repeatedValueArray(int[] nums1, int[] nums2) {
+        int[] nums3 = new int[nums1.length];
+        int k = 0;
+
+        for (int i = 0; i < nums1.length; i++)
+        {
+            for (int j = 0; j < nums2.length; j++)
+            {
+                if (nums1[i] == nums2[j])
+                {
+                    //System.out.println(nums1[i]);
+                    nums3[k] = nums1[i];
+                    k++;
+                    break;
+                }
+            }
         }
-
-
+        int[] nums4 = new int[k];
+        System.arraycopy(nums3,0,nums4, 0, k);
+        return nums4;
+    }
 }
 
 //bubble sort method exception

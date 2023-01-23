@@ -34,7 +34,7 @@ public class Main {
         //System.out.println(searchInsert(nums, 5));
         //System.out.println(plusOne(digits).toString());
         // System.out.println(getDuplicatedWordsInString("Java i like this programming language java"));
-        String str = "������ ���� ��������";
+        String str = "Иванов Иван Иванович";
         //System.out.println(reverseString(str));
         //System.out.println(exchangeSymbols(str,  '�', '�'));
         //System.out.println(stringToInt("-23"));
@@ -44,6 +44,7 @@ public class Main {
 //        int[] nums2 = {2,3,4,6,8};
 //        printNonRepeatElementsInFirstArray(nums1, nums2);
         //System.out.println(reverseString2(str));
+        System.out.println(elm("MBNAAAAzzzBBCCCvvvvvvDDDDEBBBBBBBBBBv"));
 
         int[] nums3 = {1, 2, 3, 4, 3, 5};
         // System.out.println(containsDubl(nums3));
@@ -63,8 +64,8 @@ public class Main {
 
         //System.out.println(person1.equals(person2));
 
-        int[] nums1 = {2,9,3,8,4,7,5,6,1};
-        int[] nums2 = {6,5,4,9,8,1,0,3,4};
+        int[] nums1 = {2, 9, 3, 8, 4, 7, 5, 6, 1};
+        int[] nums2 = {6, 5, 4, 9, 8, 1, 0, 3, 4};
 //        int[] nums1 = {1,2,3,5,7};
 //        int[] nums2 = {2,3,4,6,8};
         System.out.println(Arrays.toString(repeatedValueArray(nums1, nums2)));
@@ -385,12 +386,9 @@ public class Main {
         int[] nums3 = new int[nums1.length];
         int k = 0;
 
-        for (int i = 0; i < nums1.length; i++)
-        {
-            for (int j = 0; j < nums2.length; j++)
-            {
-                if (nums1[i] == nums2[j])
-                {
+        for (int i = 0; i < nums1.length; i++) {
+            for (int j = 0; j < nums2.length; j++) {
+                if (nums1[i] == nums2[j]) {
                     //System.out.println(nums1[i]);
                     nums3[k] = nums1[i];
                     k++;
@@ -399,10 +397,34 @@ public class Main {
             }
         }
         int[] nums4 = new int[k];
-        System.arraycopy(nums3,0,nums4, 0, k);
+        System.arraycopy(nums3, 0, nums4, 0, k);
         return nums4;
     }
+
+    public static String elm(String str) {
+        int count = 1;
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < str.length() - 1; i++) {
+            char ch;
+            if (str.charAt(i) == str.charAt(i + 1)) {
+                count++;
+            } else {
+                ch = str.charAt(i);
+                sb.append(ch).append(count);
+                count = 1;
+            }
+
+            if(i + 1 == str.length() - 1) {
+                ch = str.charAt(i + 1);
+                sb.append(ch).append(count);
+            }
+        }
+        return sb.toString();
+    }
 }
+
 
 //bubble sort method exception
 class MyException extends Exception {

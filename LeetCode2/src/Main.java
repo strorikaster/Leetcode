@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Main {
 
@@ -44,7 +46,7 @@ public class Main {
 //        int[] nums2 = {2,3,4,6,8};
 //        printNonRepeatElementsInFirstArray(nums1, nums2);
         //System.out.println(reverseString2(str));
-        System.out.println(elm("MBNAAAAzzzBBCCCvvvvvvDDDDEBBBBBBBBBBv"));
+        System.out.println(elm("MQNAAAAzzzBBCCCvvvvvvDDDDEBBBBBBBBBBvvv"));
 
         int[] nums3 = {1, 2, 3, 4, 3, 5};
         // System.out.println(containsDubl(nums3));
@@ -68,8 +70,11 @@ public class Main {
         int[] nums2 = {6, 5, 4, 9, 8, 1, 0, 3, 4};
 //        int[] nums1 = {1,2,3,5,7};
 //        int[] nums2 = {2,3,4,6,8};
-        System.out.println(Arrays.toString(repeatedValueArray(nums1, nums2)));
-        //repeatedValueArray(nums1, nums2);
+        //System.out.println(Arrays.toString(repeatedValueArray(nums1, nums2)));
+
+        int[] arr1 = {1,3,4,6,78,23,56,78};
+        int[] arr2 = {1,2,5,6,67,89,90};
+        System.out.println(Arrays.toString(mergeSortedArraysWithStreamApi(arr1, arr2)));
     }
 
     public static int removeElement(int[] nums, int val) {
@@ -422,6 +427,10 @@ public class Main {
             }
         }
         return sb.toString();
+    }
+
+    public static int[] mergeSortedArraysWithStreamApi(int[] arr1, int[] arr2) {
+       return IntStream.concat(Arrays.stream(arr1), Arrays.stream(arr2)).sorted().toArray();
     }
 }
 

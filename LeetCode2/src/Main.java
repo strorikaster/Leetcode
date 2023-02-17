@@ -1,15 +1,14 @@
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.Deque;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.PriorityQueue;
-import java.util.TreeMap;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class Main {
 
@@ -42,7 +41,7 @@ public class Main {
         //System.out.println(plusOne(digits).toString());
         // System.out.println(getDuplicatedWordsInString("Java i like this programming language java"));
         String str = "Иванов Иван Иванович";
-        //System.out.println(reverseString(str));
+        //System.out.println(reverseString1(str));
         //System.out.println(exchangeSymbols(str,  'а', 'т'));
         //System.out.println(stringToInt("-23"));
         //outputNumbers();
@@ -63,7 +62,14 @@ public class Main {
         double[] sourceDoubleArray = {/*2.7,6.0,4.5,8.3,9.4,5.9,7.0*/0.0};
 //        System.out.println(foo(sourceDoubleArray));
         String str5 = "AAAABBBCCXYZDDDDEEEFFFAAAAAABBBBBBBBBBBBBBBBBBBBBBBBB";
-        System.out.println(rle(str5));
+        //System.out.println(rle(str5));
+        //String s = "(()";
+        //String s = ")()())";
+        //String s = ")(()())";
+        //String s = ")(";
+        String s = "())(()())(}()";
+        //System.out.println(searchValidBrakcetsInInputString(s));
+
 
 
 
@@ -75,17 +81,19 @@ public class Main {
 
        // System.out.println(person1.equals(person2));
 
-        String s = "anagram";
+        //String s = "anagram";
         String t = "nagaram";
 //        System.out.println(isAnagram(s, t));
         String[] strs = {"eat", "tea", "tan", "ate", "nat", "bat"};
-        System.out.println(groupAnagrams(strs));
+        //System.out.println(groupAnagrams(strs));
 
-        int[] arr1 = {2,4,7,9,11,15};
+        int[] arr1 = {2,4,7,9,11,15,37,45,56};
         int[] arr2 = {1,3,5,7,8,9,12,16};
 
-        System.out.println(Arrays.toString(sortedArray(arr1, arr2)));
-        System.out.println(Arrays.toString(mergeSortedArraysWithStreamApi(arr1, arr2)));
+        //System.out.println(Arrays.toString(sortedArrayFromTwoSortedArray(arr1, arr2)));
+        //System.out.println(Arrays.toString(mergeSortedArraysWithStreamApi(arr1, arr2)));
+
+        System.out.println(makeTimeReadableHumanFormat(5));
 
     }
 
@@ -202,6 +210,8 @@ public class Main {
         }
         return strBuf.toString();
     }
+
+
 
     public static String exchangeSymbols(String str, char replacedChar, char charToReplace) {
         char[] charStr = str.toCharArray();
@@ -435,7 +445,7 @@ public class Main {
             return res;
         }
 
-        public static int[] sortedArray (int[] arr1, int[] arr2) {
+        public static int[] sortedArrayFromTwoSortedArray (int[] arr1, int[] arr2) {
             int[] mergedSortedArray = new int[arr1.length + arr2.length];
             int i = 0;
             int j = 0;
@@ -452,7 +462,7 @@ public class Main {
                 r++;
             }
                 if (i < arr1.length) {
-                    System.arraycopy(arr2, i, mergedSortedArray, r, arr1.length - i);
+                    System.arraycopy(arr1, i, mergedSortedArray, r, arr1.length - i);
                 }
                 if (j < arr2.length) {
                     System.arraycopy(arr2, j, mergedSortedArray, r, arr2.length - j);
@@ -487,6 +497,156 @@ public class Main {
             }
             return sb.toString();
         }
+
+        //Checking string contains valid brackets
+        public static boolean isValidBrackets(String input) {
+        Map<Character, Character> brackets = new HashMap<>();
+        Deque<Character> stack = new LinkedList<>();
+        brackets.put(')', '(');
+        brackets.put('}', '{');
+        brackets.put(']', '[');
+
+        for(char c : input.toCharArray()) {
+            if(brackets.containsKey(c)) {
+                stack.push(c);
+            } else if (brackets.containsValue(c)) {
+                if(stack.isEmpty() || stack.pop() !=brackets.get(c)) {
+                    return false;
+                }
+            }
+        }
+        return stack.isEmpty();
+        }
+
+        public static String /*void*/ searchValidBrakcetsInInputString(String s) {
+//            char[] symbols = input.toCharArray();
+//            Deque<Character> stack = new LinkedList<>();
+//           LinkedList<Integer> stackOfIndexes = new LinkedList<>();
+//            int counter = 0;
+//            StringBuilder sb = new StringBuilder();
+//            System.out.println("Input string " + input);
+////            for (char c : symbols) {
+//            for (int i = 0; i < symbols.length; i++) {
+//
+//
+//                //counter++;
+//                char c = symbols[i];
+//                if (c == '(' || c == '{' || c == '[') {
+//                    //System.out.println("РАССМАТРИВАЕТСЯ открывающая, индекс " + counter);
+//                    stack.push(c);
+//                    stackOfIndexes.add(i);
+//                    //System.out.println("На стек помещена открывающая");
+//                }
+//
+//                if (c == ')' || c == '}' || c == ']') {
+//                    //System.out.println("РАССМАТРИВАЕТСЯ закрывающая, индекс " + counter);
+//                    if(i == 0) {
+//                        stackOfIndexes.add(i);
+//                    }
+//                    if (!stack.isEmpty()) {
+//                        //System.out.println("Стек непустой");
+//                        char fromStack = stack.peek();
+//                        if ((c == ')' && fromStack == '(') ||
+//                                (c == '}' && fromStack == '{') ||
+//                                (c == ']' && fromStack == '[')) {
+//                            counter += 2;
+//                            stack.pop();
+//                            stackOfIndexes.removeLast();
+//
+//                        } else {
+//                            stackOfIndexes.add(i);
+//                        }
+//
+//                    } else if (i == symbols.length - 1) {
+//                        stackOfIndexes.add(i);
+//                    }
+//
+//                }
+//
+//            }
+//            if (!stackOfIndexes.isEmpty()) {
+//                for (int i = 0; i < symbols.length; i++) {
+//                  if(i != stackOfIndexes.getFirst()) {
+//                      sb.append(symbols[i]);
+//                  } else {
+//                      if(stackOfIndexes.size() != 0) {
+//                          stackOfIndexes.removeFirst();
+//                      } else {
+//                          break;
+//                      }
+//                  }
+//                }
+//            }
+//
+//            if(counter == 0) {
+//                System.out.println("0");
+//            } else {
+//                System.out.println(counter + " - " + sb);
+//            }
+
+
+
+                    Deque<Character> stack = new LinkedList<>();
+                    //Deque<Integer> validParenthess = new LinkedList<>();
+                    List<Integer> validParenthess = new ArrayList<>();
+                    Map<Character,Character> map = new HashMap<>();
+
+                    map.put(')','(');
+                    map.put('}','{');
+                    map.put(']','[');
+
+                    StringBuilder sb = new StringBuilder();
+                    int count = 0;
+                    int j = 0;
+                    for(int i = 0; i < s.length(); i++) {
+                        if (map.containsValue(s.charAt(i))) {
+                            stack.push(s.charAt(i));
+                            validParenthess.add(i);
+                        }
+
+                        if (map.containsKey(s.charAt(i))) {
+                            if (!stack.isEmpty() && stack.peek() == map.get(s.charAt(i))) {
+                                count += 2;
+                                stack.pop();
+                                //validParenthess.push(i-1);
+                                validParenthess.add(i);
+                            }
+//            } else {
+//                validParenthess.removeLast();
+                        }
+                    }
+
+//                    while (!stack.isEmpty()) {
+//                        validParenthess.remove(mapCharIndex.get(stack.peek()));
+//                    }
+                    // validParenthess.removeLast();
+                    return validParenthess.toString() + " " + count;
+                }
+
+    public static String makeTimeReadableHumanFormat(int seconds) {
+        // Do something
+        StringBuilder sb = new StringBuilder();
+
+        int hours = seconds/3600;
+        System.out.println(hours);
+        int min = (seconds - hours*3600)/60;
+        System.out.println(min);
+        int sec = seconds - hours*3600 - min*60;
+        System.out.println(sec);
+
+        System.out.println(hours/10);
+        System.out.println(min/10);
+        System.out.println(sec/10);
+
+        ((hours/10 < 1) ? sb.append('0').append(hours): sb.append(hours)).append(":");
+        ((min/10 < 1) ? sb.append('0').append(min): sb.append(min)).append(":");
+        ((sec /10 < 1) ? sb.append('0').append(sec): sb.append(sec)).append("");
+
+        return sb.toString();
+    }
+
+
+
 
 
 }

@@ -72,7 +72,12 @@ public class Main {
         int[] inputArray = {0, 1, 4, 3, 9, 9, 9, 8, 8, 0};
         System.out.println("printValuesFromArrayWithCountRepeatingDigits");
         printValuesFromArrayWithCountRepeatingDigits(inputArray);
+        System.out.println("\n");
 
+
+        int[] inArray = {0,1,2,0,3,4,0,5,6,7,0,0,8,9,0};
+        System.out.println("replaceNulltoEndOfList");
+        System.out.println(Arrays.toString(replaceNulltoEndOfList(inArray)));
 
 
 
@@ -633,15 +638,15 @@ public class Main {
         StringBuilder sb = new StringBuilder();
 
         int hours = seconds/3600;
-        System.out.println(hours);
+        //System.out.println(hours);
         int min = (seconds - hours*3600)/60;
-        System.out.println(min);
+        //System.out.println(min);
         int sec = seconds - hours*3600 - min*60;
-        System.out.println(sec);
+       // System.out.println(sec);
 
-        System.out.println(hours/10);
-        System.out.println(min/10);
-        System.out.println(sec/10);
+        //System.out.println(hours/10);
+        //System.out.println(min/10);
+        //System.out.println(sec/10);
 
         ((hours/10 < 1) ? sb.append('0').append(hours): sb.append(hours)).append(":");
         ((min/10 < 1) ? sb.append('0').append(min): sb.append(min)).append(":");
@@ -693,24 +698,58 @@ public class Main {
         }
     }
         map.forEach((k, v) -> System.out.print(v == 1?k+" ":(k + "-" + v+" ")));
+
+        }
+
+/*    public static  List<Integer> replaceNulltoEndOfList(int[] inArray) {
+            List<Integer> result = new ArrayList<>();
+            int pointer = 0;
+        for (int i = 0; i < inArray.length; i++) {
+            if (inArray[i] != 0) {
+                result.add(inArray[i]);
+                pointer++;
+            }
+        }
+            for (int j = 0; j < inArray.length - pointer; j++) {
+                result.add(0);
+            }
+            return result;
+    }*/
+
+    /*c одним циклом но доп.массивом: public*/
+    static int[] replaceNulltoEndOfList(int[] numbers) {
+        int[] result = new int[numbers.length];
+        int zeroIndex = numbers.length - 1;
+        int notZeroIndex = 0;
+        for (int number : numbers) {
+            if (number == 0) {
+                result[zeroIndex] = 0;
+                zeroIndex--;
+            } else {
+                result[notZeroIndex] = number;
+                notZeroIndex++;
+            }
+        }
+        return result;
+    }
 }
 
 //bubble sort method exception
-static class MyException extends Exception {
+class MyException extends Exception {
 
    public MyException (String message) {
        super(message);
    }
 }
 
-static class MyDoubleException extends Exception {
+class MyDoubleException extends Exception {
 
     public MyDoubleException (String message) {
         super(message);
     }
 }
 
-static class Person {
+class Person {
 
     String firstName;
     String lastName;
@@ -790,6 +829,6 @@ record Order (Long id, List<Long> productIds, LocalDate orderDate) {
     /*6    public static boolean isBigOrder() {
         return productIds.size() >= BIG_ORDER_SIZE;
     }*/
-}}
+}
 
 

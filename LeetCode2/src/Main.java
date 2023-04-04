@@ -40,9 +40,9 @@ public class Main {
         //System.out.println(searchInsert(nums, 5));
         //System.out.println(plusOne(digits).toString());
         // System.out.println(getDuplicatedWordsInString("Java i like this programming language java"));
-        String str = "Иванов Иван Иванович";
+        String str = "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
         //System.out.println(reverseString1(str));
-        //System.out.println(exchangeSymbols(str,  'а', 'т'));
+        //System.out.println(exchangeSymbols(str,  'пїЅ', 'пїЅ'));
         //System.out.println(stringToInt("-23"));
         //outputNumbers();
         //System.out.println(stringToDouble("23"));
@@ -141,7 +141,7 @@ public class Main {
         return lo;
     }
 
-    //сам решил
+    //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     public int lengthOfLastWord(String s) {
         String[] strMas = s.split(" ");
         return (strMas[strMas.length - 1]).length();
@@ -542,19 +542,19 @@ public class Main {
 //                //counter++;
 //                char c = symbols[i];
 //                if (c == '(' || c == '{' || c == '[') {
-//                    //System.out.println("РАССМАТРИВАЕТСЯ открывающая, индекс " + counter);
+//                    //System.out.println("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ " + counter);
 //                    stack.push(c);
 //                    stackOfIndexes.add(i);
-//                    //System.out.println("На стек помещена открывающая");
+//                    //System.out.println("пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 //                }
 //
 //                if (c == ')' || c == '}' || c == ']') {
-//                    //System.out.println("РАССМАТРИВАЕТСЯ закрывающая, индекс " + counter);
+//                    //System.out.println("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ " + counter);
 //                    if(i == 0) {
 //                        stackOfIndexes.add(i);
 //                    }
 //                    if (!stack.isEmpty()) {
-//                        //System.out.println("Стек непустой");
+//                        //System.out.println("пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 //                        char fromStack = stack.peek();
 //                        if ((c == ')' && fromStack == '(') ||
 //                                (c == '}' && fromStack == '{') ||
@@ -657,12 +657,12 @@ public class Main {
 
 
     //Symmetric difference is the difference of A union B and A intersection B i.e. [(A U B) - (A ^ B)]
-    //Ex – A={12,24,7,36,14} and B={11,26,7,14}.
+    //Ex пїЅ A={12,24,7,36,14} and B={11,26,7,14}.
     //Union operation merges the two arrays and makes sure that common elements appear only once
     //A U B ={ 7,11,12,14,24,26,36} and
     //Intersection operation includes common elements from both the arrays.
     //A ^ B = {7,14}
-    //Symmetric difference of A and B after sorting= [A U B] – [ A ^ B] = {11,12,24,26,36}.
+    //Symmetric difference of A and B after sorting= [A U B] пїЅ [ A ^ B] = {11,12,24,26,36}.
     public static void symmetricSubstactTwoArrays(int[] a, int[] b) {
          int k = 0;
          int l = 0;
@@ -716,7 +716,7 @@ public class Main {
             return result;
     }*/
 
-    /*c одним циклом но доп.массивом: public*/
+    /*c пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ.пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: public*/
     static int[] replaceNulltoEndOfList(int[] numbers) {
         int[] result = new int[numbers.length];
         int zeroIndex = numbers.length - 1;
@@ -732,6 +732,33 @@ public class Main {
         }
         return result;
     }
+
+
+    class Test {
+
+public static void main(String[] args) { int[] arr1= (-10, -20,5, 2, 2, -10, 6); int[] arr2 = (-20, 1, 3, 3, 7, 6, 0, 0); testlarr2, arr1);
+
+test(arr1, arr2);
+
+}
+
+public static void test(int[] arr1, int[] arr2){
+
+for (int i=0; i<arr1.length; i++) {
+
+boolean temp = false; for (int j = 0; j < arr2.length;j++) { if (arr1[0] == arr2[1]) {
+
+temp = true;
+
+break;
+
+}
+
+if (temp)
+
+System.out.println(arr1[]);
+
+}
 }
 
 //bubble sort method exception
